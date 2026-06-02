@@ -102,10 +102,49 @@
     .hero { padding: clamp(22px, 3.2vw, 42px); }
     .certificate-grid { align-items: stretch; }
     .certificate-card {
-      grid-template-columns: 104px minmax(0, 1fr);
-      align-items: start;
+      grid-template-columns: 1fr;
+      align-items: stretch;
       min-height: 0;
       height: 100%;
+      padding: 16px;
+    }
+    .certificate-preview {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      height: clamp(320px, 42vw, 520px);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(0, 0, 0, 0.28);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    }
+    .certificate-preview object,
+    .certificate-preview iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: 0;
+      background: #111827;
+    }
+    .certificate-preview-fallback {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+      padding: 22px;
+      color: var(--ink);
+      text-align: center;
+      text-decoration: none;
+      background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+    }
+    .certificate-detail-row {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 104px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      padding-top: 18px;
     }
     .logo-badge {
       width: 104px;
@@ -126,7 +165,8 @@
       object-position: center;
     }
     @media (max-width: 640px) {
-      .certificate-card { grid-template-columns: 1fr; }
+      .certificate-preview { height: 360px; }
+      .certificate-detail-row { grid-template-columns: 1fr; }
       .logo-badge { width: 92px; height: 92px; }
       .local-card { grid-template-rows: 210px auto; }
     }
@@ -249,13 +289,22 @@
       card.style.setProperty("--accent", certificate.color);
       card.style.animationDelay = `${index * -0.6}s`;
       card.innerHTML = `
-        <div class="logo-badge" aria-label="${certificate.company} logo badge">${certificate.initials}</div>
-        <div class="certificate-body">
-          <p class="eyebrow">${certificate.company}</p>
-          <h3>${certificate.title}</h3>
-          <p>${certificate.details}</p>
-          <div class="certificate-meta">${certificate.skills.map((skill) => `<span class="tag">${skill}</span>`).join("")}</div>
-          <a class="button primary" href="${certificate.verify}" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Verify certificate</a>
+        <div class="certificate-preview" aria-label="${certificate.company} certificate preview">
+          <object data="${certificate.verify}" type="application/pdf" title="${certificate.company} certificate preview">
+            <a class="certificate-preview-fallback" href="${certificate.verify}" target="_blank" rel="noopener">
+              <span><i class="fa-solid fa-file-certificate"></i><br>Open ${certificate.company} certificate image / PDF preview</span>
+            </a>
+          </object>
+        </div>
+        <div class="certificate-detail-row">
+          <div class="logo-badge" aria-label="${certificate.company} logo badge">${certificate.initials}</div>
+          <div class="certificate-body">
+            <p class="eyebrow">${certificate.company}</p>
+            <h3>${certificate.title}</h3>
+            <p>${certificate.details}</p>
+            <div class="certificate-meta">${certificate.skills.map((skill) => `<span class="tag">${skill}</span>`).join("")}</div>
+            <a class="button primary" href="${certificate.verify}" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Verify certificate</a>
+          </div>
         </div>
       `;
       grid.appendChild(card);
