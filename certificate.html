@@ -96,6 +96,40 @@
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
     @media (max-width: 900px) { .certificate-grid, .local-certificates { grid-template-columns: 1fr; } .stats { grid-template-columns: 1fr; } }
     @media (max-width: 640px) { .page { width: min(100% - 18px, 1180px); padding-top: 10px; } .nav { align-items: flex-start; flex-direction: column; border-radius: 24px; } .hero { padding: 23px; border-radius: 26px; } .section-head { align-items: flex-start; flex-direction: column; } .certificate-card { grid-template-columns: 1fr; } }
+
+
+    /* Alignment + image sizing pass for cleaner certificate cards. */
+    .hero { padding: clamp(22px, 3.2vw, 42px); }
+    .certificate-grid { align-items: stretch; }
+    .certificate-card {
+      grid-template-columns: 104px minmax(0, 1fr);
+      align-items: start;
+      min-height: 0;
+      height: 100%;
+    }
+    .logo-badge {
+      width: 104px;
+      height: 104px;
+      align-self: start;
+      font-size: clamp(1.45rem, 3vw, 2.05rem);
+      text-align: center;
+    }
+    .certificate-body { min-width: 0; }
+    .local-certificates {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      align-items: stretch;
+    }
+    .local-card { display: grid; grid-template-rows: 230px auto; }
+    .local-card img {
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+    @media (max-width: 640px) {
+      .certificate-card { grid-template-columns: 1fr; }
+      .logo-badge { width: 92px; height: 92px; }
+      .local-card { grid-template-rows: 210px auto; }
+    }
   </style>
 </head>
 <body>
