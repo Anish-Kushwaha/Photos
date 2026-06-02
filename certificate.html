@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="theme-color" content="#07101f">
+  <meta name="theme-color" content="#050816">
   <meta name="color-scheme" content="dark only">
   <title>Anish Kushwaha | Certificates | Software Engineering & Cybersecurity</title>
   <meta name="description" content="Certificate page for Anish Kushwaha with software engineering, cybersecurity, internship, and achievement certificates plus verification links.">
@@ -13,7 +13,7 @@
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://Anish-Kushwaha.online/certificate.html">
   <meta property="og:title" content="Anish Kushwaha Certificate Page">
-  <meta property="og:description" content="Verified software engineering and cybersecurity certificates with company logos and proof links.">
+  <meta property="og:description" content="Verified software engineering and cybersecurity certificates with actual certificate images and proof links.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://Anish-Kushwaha.online/certificate.html">
   <meta property="og:image" content="https://Anish-Kushwaha.online/MyBharat_Quiz_Certificate.png">
@@ -79,7 +79,7 @@
 
     .page { width: min(1240px, calc(100% - 30px)); margin: 0 auto; padding: 24px 0 58px; }
 
-    /* NAVIGATION – exact same as index.html (size, shape, glass effect) */
+    /* NAVIGATION – exact same as index.html */
     .nav {
       position: sticky;
       top: 12px;
@@ -168,7 +168,7 @@
     .section-head h2 { margin: 0; font-size: clamp(2.1rem, 5vw, 4.2rem); line-height: 0.93; letter-spacing: -0.06em; }
     .section-head p { max-width: 520px; margin: 0; color: var(--muted); line-height: 1.7; }
 
-    /* certificate grid with images on top */
+    /* certificate grid with actual certificate images on top */
     .certificate-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; align-items: stretch; }
     .certificate-card {
       position: relative;
@@ -181,6 +181,11 @@
       background: rgba(255, 255, 255, 0.09);
       box-shadow: 0 22px 70px rgba(0, 0, 0, 0.3);
       animation: cardFloat 7s ease-in-out infinite;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .certificate-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--cyan);
     }
     .certificate-card::before {
       content: "";
@@ -194,7 +199,7 @@
       filter: blur(8px);
       animation: orbFloat 12s ease-in-out infinite;
     }
-    /* image preview area (the "above vacant area" now filled with actual certificate image) */
+    /* certificate image preview (actual uploaded image) */
     .certificate-preview {
       position: relative;
       z-index: 1;
@@ -202,7 +207,7 @@
       aspect-ratio: 16 / 10;
       overflow: hidden;
       border-bottom: 1px solid var(--line);
-      background: rgba(0, 0, 0, 0.3);
+      background: #03050f;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -211,8 +216,8 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      background: #03050f;
-      transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      background: #0a0e1a;
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .certificate-card:hover .certificate-preview img {
       transform: scale(1.02);
@@ -242,11 +247,11 @@
     }
     .certificate-body { min-width: 0; }
     .certificate-body h3 { margin: 0; font-size: clamp(1.35rem, 2.5vw, 2rem); line-height: 1.05; letter-spacing: -0.04em; }
-    .certificate-body p { color: var(--muted); line-height: 1.62; }
+    .certificate-body p { color: var(--muted); line-height: 1.62; margin-top: 8px; }
     .certificate-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; }
     .tag { padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--cyan); background: rgba(0, 0, 0, 0.18); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.09em; text-transform: uppercase; }
 
-    /* local certificates grid (unchanged but styled) */
+    /* local certificates grid (extra achievements) */
     .local-certificates { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 8px; }
     .local-card { overflow: hidden; border: 1px solid var(--line); border-radius: 26px; background: rgba(255, 255, 255, 0.09); box-shadow: 0 18px 55px rgba(0, 0, 0, 0.25); text-decoration: none; color: inherit; transition: transform 0.25s ease, border-color 0.25s ease; display: flex; flex-direction: column; }
     .local-card:hover { transform: translateY(-7px); border-color: var(--cyan); }
@@ -255,7 +260,7 @@
     .local-card span { color: var(--cyan); font-size: 0.74rem; font-weight: 950; letter-spacing: 0.1em; text-transform: uppercase; }
     .local-card h3 { margin: 9px 0 0; font-size: 1rem; line-height: 1.2; }
 
-    /* FOOTER — exactly same style as index.html */
+    /* FOOTER – exactly same as index.html */
     .footer {
       margin-top: 52px;
       padding: 24px;
@@ -274,7 +279,7 @@
     @keyframes spinGlow { to { transform: rotate(360deg); } }
     @keyframes pulse { 50% { transform: scale(1.65); opacity: 0.55; } }
     @keyframes shimmer { to { background-position: 240% 0; } }
-    @keyframes cardFloat { 50% { transform: translateY(-8px); } }
+    @keyframes cardFloat { 50% { transform: translateY(-6px); } }
     @keyframes orbFloat { 50% { transform: translate(42px, 46px) scale(1.08); } }
 
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; } }
@@ -303,7 +308,7 @@
   <span class="aurora-orb two"></span>
 
   <main class="page">
-    <!-- Navigation bar: identical shape, size and style as index.html (glass pill with brand and links) -->
+    <!-- Navigation bar: identical to index.html (same shape, glass effect, links) -->
     <nav class="nav" aria-label="Primary navigation">
       <a class="brand" href="index.html"> ANISH ● CERTIFICATES</a>
       <div class="nav-links">
@@ -316,7 +321,7 @@
     <header class="hero">
       <p class="eyebrow">Verified achievements</p>
       <h1>Software Engineering & <span class="gradient">Cybersecurity Certificates</span></h1>
-      <p class="lead">This page displays certificates, internship achievements, verification links, and local uploaded proof images. Each company card includes an actual certificate image + direct verification PDF link.</p>
+      <p class="lead">Each certificate card shows the actual uploaded certificate image. Click "Verify certificate" to view the official Forage verification link / PDF proof.</p>
       <div class="stats">
         <div class="stat"><strong>6</strong><span>Forage verified certs</span></div>
         <div class="stat"><strong>4+</strong><span>Uploaded proof files</span></div>
@@ -328,9 +333,9 @@
       <div class="section-head">
         <div>
           <p class="eyebrow">Company certificates</p>
-          <h2 id="verifiedTitle">Verified certificate cards with images</h2>
+          <h2 id="verifiedTitle">Certificate images with verification links</h2>
         </div>
-        <p>Each certificate image matches the company name – exactly as requested (filename ends with company name). Preview available in high resolution.</p>
+        <p>Actual uploaded certificate images are displayed. The "Verify certificate" button opens the official Forage credential link.</p>
       </div>
       <div class="certificate-grid" id="certificateGrid"></div>
     </section>
@@ -358,69 +363,68 @@
 
   <script>
     (function() {
-      // Certificate data includes image filename that ends with the company name (exactly matching requirement)
-      // Images are expected to be in the same directory as the HTML file, named accordingly.
-      // Example: "Mastercard.png", "JPMorgan.png", "TATA.png", "BritishAirways.png", "GoldmanSachs.png", "Blackbird.png"
+      // Certificate data: includes actual uploaded image filenames (exactly as provided)
+      // Verification links are the official Forage credential URLs (used only for verification)
       const certificates = [
         {
           company: "Mastercard",
           initials: "MC",
-          title: "Cybersecurity Virtual Experience Program",
-          details: "Practical cybersecurity awareness, threat identification, and security communication simulation.",
-          skills: ["Cybersecurity", "Threat Analysis", "Security Awareness"],
+          title: "Cybersecurity Job Simulation",
+          details: "Completed a job simulation where I served as an analyst on Mastercard's Security Awareness Team. Identified threats, communicated security risks, and recommended mitigation strategies.",
+          skills: ["Cybersecurity", "Threat Analysis", "Risk Communication"],
           color: "#ff5f00",
           verify: "https://www.theforage.com/completion-certificates/mfxGwGDp6WkQmtmTf/vcKAB5yYAgvemepGQ_mfxGwGDp6WkQmtmTf_6974f60e4414d52c3e6f7fee_1780231229190_completion_certificate.pdf?raw=1",
-          imageName: "Mastercard.png"           // ends with company name: Mastercard
+          imageName: "Cybersecurity-Job-Simulation-Mastercard.jpg"
         },
         {
           company: "JP Morgan Chase & Co.",
           initials: "JPM",
-          title: "Software Engineering Virtual Experience",
-          details: "Engineering workflows, financial technology interfaces, data visualization, and production-minded development tasks.",
+          title: "Software Engineering Job Simulation",
+          details: "Engineering workflows, financial technology interfaces, data visualization, and production-minded development tasks in a simulated investment banking environment.",
           skills: ["Software Engineering", "FinTech", "Frontend"],
           color: "#6be4ff",
           verify: "https://www.theforage.com/completion-certificates/Sj7temL583QAYpHXD/E6McHJDKsQYh79moz_Sj7temL583QAYpHXD_6974f60e4414d52c3e6f7fee_1769331230354_completion_certificate.pdf?raw=1",
-          imageName: "JPMorgan.png"            // ends with JPMorgan (matches company shorthand)
+          imageName: "jpmorgan-software-engineering.jpg"
         },
         {
-          company: "TATA",
+          company: "TATA Technologies",
           initials: "TATA",
-          title: "Data Visualization / Business Insights Program",
-          details: "Business-focused data interpretation, dashboard thinking, and stakeholder communication exercises.",
-          skills: ["Analytics", "Visualization", "Business Insight"],
+          title: "GenAI Powered Data Analytics Job Simulation",
+          details: "Completed a job simulation involving AI-powered data analytics and strategy development for the financial sector. Leveraged generative AI for business insights.",
+          skills: ["Data Analytics", "Generative AI", "Business Strategy"],
           color: "#03ffc8",
           verify: "https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/gMTdCXwDdLYoXZ3wG_ifobHAoMjQs9s6bKS_6974f60e4414d52c3e6f7fee_1780229431764_completion_certificate.pdf?raw=1",
-          imageName: "TATA.png"                // ends with TATA
+          imageName: "GenAI-Powered-Data-Analytics-Job-Simulation-TATA.jpg"
         },
         {
           company: "British Airways",
           initials: "BA",
-          title: "Digital / Data Science Virtual Experience",
-          details: "Customer insight, data-led decision making, and aviation business analysis practice.",
-          skills: ["Data Science", "Customer Insight", "Analysis"],
+          title: "Engineering Job Simulation",
+          details: "Completed British Airways's Engineering simulation on Forage. Worked on real-world engineering challenges, system design, and data-led decision making for aviation operations.",
+          skills: ["Engineering", "Data Science", "System Design"],
           color: "#2f6df6",
           verify: "https://www.theforage.com/completion-certificates/tMjbs76F526fF5v3G/WmDnBzkLZFR9Rcjqa_tMjbs76F526fF5v3G_6974f60e4414d52c3e6f7fee_1780299705645_completion_certificate.pdf?raw=1",
-          imageName: "BritishAirways.png"      // ends with BritishAirways (company name without spaces)
+          imageName: "Engineering-Job-Simulation-BritishAirways.jpg"
         },
         {
           company: "Goldman Sachs",
           initials: "GS",
-          title: "Software Engineering / Security Program",
-          details: "Secure engineering practices, password/security review thinking, and financial technology problem solving.",
-          skills: ["Security", "Engineering", "Risk Review"],
+          title: "Operations Job Simulation",
+          details: "Completed Goldman Sachs's Operations simulation. Focused on secure engineering practices, operational risk review, and financial technology problem solving.",
+          skills: ["Operations", "Risk Review", "Engineering"],
           color: "#ffd166",
           verify: "https://www.theforage.com/completion-certificates/MBA4MnZTNFEoJZGnk/wNge9cjzNTXD2acrv_MBA4MnZTNFEoJZGnk_6974f60e4414d52c3e6f7fee_1780298584242_completion_certificate.pdf?raw=1",
-          imageName: "GoldmanSachs.png"        // ends with GoldmanSachs
+          imageName: "Operations-Job-Simulation-GoldmanSachs.jpg"
         },
         {
           company: "Blackbird",
           initials: "BB",
-          title: "Software / Startup Virtual Experience",
-          details: "Startup-style problem solving, product thinking, and practical software delivery simulation.",
-          skills: ["Product", "Software", "Startup"],
+          title: "Software Engineering Job Simulation",
+          details: "Completed Blackbird's Software Engineering simulation. Startup-style problem solving, product thinking, and practical software delivery simulation with real-world scenarios.",
+          skills: ["Software Engineering", "Product", "Startup"],
           color: "#ff4ecd",
           verify: "https://www.theforage.com/completion-certificates/nWHPnWj8YqGJh5kQB/8XSySTLv68WYeFhke_nWHPnWj8YqGJh5kQB_6974f60e4414d52c3e6f7fee_1780302463424_completion_certificate.pdf?raw=1",
-          imageName: "Blackbird.png"           // ends with Blackbird
+          imageName: "Software-Engineering-Job-Simulation-BlackBird.jpg"
         }
       ];
 
@@ -433,20 +437,16 @@
         card.style.setProperty("--accent", cert.color);
         card.style.animationDelay = `${idx * -0.5}s`;
 
-        // Build image preview section: "certificate image displayed at the above vacant area"
-        // Using img that points to file named after company -> ensures "Name ended with the companies name"
-        const imgSrc = cert.imageName;
-        
-        // create preview container
+        // Create image preview container with actual uploaded certificate image
         const previewDiv = document.createElement("div");
         previewDiv.className = "certificate-preview";
         const imgElement = document.createElement("img");
-        imgElement.src = imgSrc;
-        imgElement.alt = `${cert.company} certificate preview image`;
+        imgElement.src = cert.imageName;
+        imgElement.alt = `${cert.company} certificate - actual uploaded image`;
         imgElement.loading = "lazy";
-        // graceful fallback: if image fails to load, show a stylized placeholder (still informative)
+        
+        // Graceful fallback: if image fails to load, show a placeholder with company name + icon
         imgElement.onerror = function() {
-          // if missing, replace with meaningful placeholder with company name + icon (preserves layout)
           this.onerror = null;
           this.style.display = "none";
           const fallbackSpan = document.createElement("div");
@@ -456,15 +456,18 @@
           fallbackSpan.style.justifyContent = "center";
           fallbackSpan.style.height = "100%";
           fallbackSpan.style.width = "100%";
-          fallbackSpan.style.backgroundColor = "rgba(0,0,0,0.6)";
-          fallbackSpan.style.backdropFilter = "blur(4px)";
+          fallbackSpan.style.backgroundColor = "rgba(0,0,0,0.65)";
+          fallbackSpan.style.backdropFilter = "blur(6px)";
           fallbackSpan.style.color = "#f8fbff";
-          fallbackSpan.innerHTML = `<i class="fa-regular fa-file-image" style="font-size: 3rem; margin-bottom: 8px; opacity:0.8;"></i><span style="font-size:0.9rem;">${cert.company} certificate</span><small style="margin-top: 6px;">${cert.title.substring(0, 35)}</small>`;
+          fallbackSpan.style.padding = "1rem";
+          fallbackSpan.style.textAlign = "center";
+          fallbackSpan.innerHTML = `<i class="fa-regular fa-file-image" style="font-size: 3rem; margin-bottom: 8px; opacity:0.9;"></i><span style="font-size:0.9rem; font-weight:500;">${cert.company}</span><small style="margin-top: 6px;">${cert.title}</small>`;
           previewDiv.appendChild(fallbackSpan);
         };
+        
         previewDiv.appendChild(imgElement);
-
-        // details row with logo badge and body
+        
+        // Details row with logo badge and body + verify button (only verification link)
         const detailRow = document.createElement("div");
         detailRow.className = "certificate-detail-row";
         detailRow.innerHTML = `
@@ -474,10 +477,10 @@
             <h3>${cert.title}</h3>
             <p>${cert.details}</p>
             <div class="certificate-meta">${cert.skills.map(skill => `<span class="tag">${skill}</span>`).join("")}</div>
-            <a class="button primary" href="${cert.verify}" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Verify certificate</a>
+            <a class="button primary" href="${cert.verify}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Verify certificate</a>
           </div>
         `;
-
+        
         card.appendChild(previewDiv);
         card.appendChild(detailRow);
         grid.appendChild(card);
@@ -485,4 +488,4 @@
     })();
   </script>
 </body>
-      </html>
+</html>
