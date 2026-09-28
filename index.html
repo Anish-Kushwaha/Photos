@@ -577,7 +577,7 @@
     async function discoverRepositoryMedia() {
       const api = "https://api.github.com/repos/Anish-Kushwaha/Photos/git/trees/main?recursive=1";
       const response = await fetch(api, { headers: { Accept: "application/vnd.github+json" } });
-      if (!response.ok) throw new Error("GitHub repository scan failed: " + response.status);
+      if (!response.ok) throw new Error("Git Server scan failed: " + response.status);
       const data = await response.json();
 
       return (data.tree || [])
@@ -597,7 +597,7 @@
           <div>
             <p class="eyebrow">Auto Discovery</p>
             <h3>Repository scan unavailable</h3>
-            <p>GitHub could not be scanned right now. Refresh the page and the gallery will try again.</p>
+            <p>Server is unable to Fetch the files now. So please Get lost from here.</p>
           </div>
           <i class="folder-icon fa-solid fa-cloud-arrow-down"></i>
         </div>
@@ -624,8 +624,8 @@
         if (unassigned.length) {
           const autoFolder = {
             title: "Auto-Discovered Media",
-            years: "Fetched automatically from this GitHub repository",
-            description: "Any supported image or video added to the repository appears here automatically. No filename needs to be added to the HTML.",
+            years: "Fetched automatically from this Git server",
+            description: "Any supported image or video added to the repository appears here.",
             color: "#6be4ff",
             tags: ["AUTO", "IMAGES", "VIDEOS", "LIVE REPO"]
           };
