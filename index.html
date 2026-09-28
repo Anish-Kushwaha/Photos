@@ -239,8 +239,10 @@
       transition: transform 0.3s ease, border-color 0.3s ease;
     }
     .photo-tile:hover { transform: translateY(-7px) rotate(1deg); border-color: var(--cyan); }
-    .photo-tile img { width: 100%; height: 100%; display: block; object-fit: cover; transform: scale(1.04); transition: transform 0.8s cubic-bezier(.2,.8,.2,1), filter 0.4s ease; }
-    .photo-tile:hover img { transform: scale(1.16); filter: saturate(1.22) contrast(1.06); }
+    .photo-tile img, .photo-tile video { width: 100%; height: 100%; display: block; object-fit: cover; transform: scale(1.04); transition: transform 0.8s cubic-bezier(.2,.8,.2,1), filter 0.4s ease; }
+    .photo-tile video { pointer-events: none; }
+    .photo-tile:hover img, .photo-tile:hover video { transform: scale(1.16); filter: saturate(1.22) contrast(1.06); }
+    .media-badge { position: absolute; top: 10px; right: 10px; z-index: 2; padding: 7px 9px; border-radius: 999px; background: rgba(0,0,0,.68); color: var(--cyan); font-size: .72rem; font-weight: 900; }
     .photo-tile.placeholder { display: grid; place-items: center; padding: 16px; color: var(--muted); text-align: center; }
     .photo-tile.placeholder strong { display: block; color: var(--ink); margin-bottom: 5px; }
     .photo-tile.placeholder i { display: block; margin-bottom: 10px; color: var(--folder-color, var(--cyan)); font-size: 2.2rem; }
@@ -250,7 +252,7 @@
     .lightbox { position: fixed; inset: 0; z-index: 40; display: grid; place-items: center; padding: 22px; background: rgba(3, 5, 18, 0.88); backdrop-filter: blur(18px); opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
     .lightbox.open { opacity: 1; pointer-events: auto; }
     .lightbox-panel { width: min(1080px, 100%); display: grid; gap: 14px; }
-    .lightbox img { width: 100%; max-height: 78vh; object-fit: contain; border: 1px solid var(--line); border-radius: 24px; background: rgba(255, 255, 255, 0.08); box-shadow: var(--shadow); }
+    .lightbox img, .lightbox video { width: 100%; max-height: 78vh; object-fit: contain; border: 1px solid var(--line); border-radius: 24px; background: rgba(255, 255, 255, 0.08); box-shadow: var(--shadow); }
     .lightbox-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255, 255, 255, 0.1); }
     .icon-button { width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); background: rgba(255, 255, 255, 0.12); cursor: pointer; }
     .footer { margin-top: 42px; padding: 24px; border: 1px solid var(--line); border-radius: 26px; background: rgba(255, 255, 255, 0.08); color: var(--muted); text-align: center; }
@@ -426,7 +428,7 @@
           <button class="icon-button" type="button" id="closeButton" aria-label="Close preview">×</button>
         </div>
       </div>
-      <img id="lightboxImage" src="" alt="">
+      <div id="lightboxMedia" class="lightbox-media"></div>
     </div>
   </div>
 
@@ -439,7 +441,7 @@
         description: "Empty future folder for IIT college memories.",
         color: "#ffd166",
         tags: ["IIT-D", "2028-2032", "future"],
-        files: ["IIT1.jpg"],
+        match: /^(iit|IIT)/i,
         keepMissing: true
       },
       {
@@ -449,117 +451,223 @@
         description: "In 2026, moved to KOTA for IIT-JEE preparation, with Allen Career Institute. Got the most valuable experiences and learned to live Life alone.",
         color: "#03ffc8",
         tags: ["KOTA", "Allen", "IIT-JEE", "2026-2028"],
-        files: ["ALLEN-KOTA.jpg", "KOTA-Allen-Evening.png", "KOTA-Allen-Night-Out.png", "KOTA-Allen-Friend.jpg", "KOTA-Allen-Hostel.webp", "KOTA-Allen-Cantine.jpg", "KOTA-Allen2.jpg", "KOTA-Allen-NorthEastern-Brain.jpg", "KOTA-Allen-ClassRoom.jpg", "KOTA-Allen-STM-BETNR1.jpg", "KOTA-Allen-1st-Funday.mp4", "KOTA-Allen-2nd-Funday.mp4", "KOTA-Allen-2nd-Funday-Part2.mp4"],
+        match: /(kota|allen)/i,
         keepMissing: true
       },
       {
         id: "school",
         title: "ST. MARY'S SCHOOL Journey",
         years: "Buxar • 2019-2026 • Till Class 10th",
-        description: "The Golden periods of Student life at ST.MARY'S SCHOOL, BUXAR. Completed my Matriculation from their with CISCE Board. Had the best experience of my teenage life.",
+        description: "The Golden periods of Student life at ST.MARY'S SCHOOL, BUXAR. Completed my Matriculation from there with CISCE Board. Had the best experience of my teenage life.",
         color: "#9d7bff",
         tags: ["ST.MARYS", "CISCE", "Class 10", "2019-2026"],
-        files: ["BUXAR-ST.MARYS-Teachers-Day.jpg", "BUXAR-ST.MARYS-Gov-Hospital.jpg", "BUXAR-STMARYS-Miss-Filo.jpg", "BUXAR-ST.MARYS-Miss-Shristi.jpg", "BUXAR-ST.MARYS-Vipin-Sir.jpg", "BUXAR-ST.MARYS-Alok-Master.jpg", "BUXAR-ST.MARYS-Friends-party.jpg", "BUXAR-ST.MARY'S-Me.jpg", "BUXAR-ST.MARYS-Pradhan.jpg", "BUXAR-ST.MARYS-Vinit.jpg", "Buxar-ST.MARYS.jpg", "BUXAR-ST.MARYS-Birthday.jpg", "BUXAR-ST.MARYS-Republic-Day.jpg", "BUXAR-ST.MARYS-Independence.jpeg", "BUXAR-ST-MARYS-Christmas.jpg", "BUXAR-ST-MARYS-Christmas-Eve.jpg", "Last-Day-10th.jpg" ],
+        match: /(mary|stmarys|school|cisce|10th)/i,
         keepMissing: true
       },
       {
         id: "buxar",
         title: "Life at Buxar Hometown",
         years: "Buxar City • 2009-2026",
-        description: "I lived 16 years of my life in my Hometown BUXAR, till 2026 before sifting to KOTA. I remember all those stuffs, I used to do in BUXAR.",
+        description: "I lived 16 years of my life in my Hometown BUXAR, till 2026 before shifting to KOTA. I remember all those stuffs I used to do in BUXAR.",
         color: "#ff4ecd",
         tags: ["BUXAR", "Hometown", "2009-2026"],
-        files: ["BUXAR-Kabakhya-Temple.jpg", "BUXAR-Ganga-Views.jpg", "BUXAR-Ruler-Areas.jpg", "BUXAR-Jail-Road.jpg", "BUXAR-Station.jpg", "BUXAR-River-Ganga.jpg", "BUXAR-Night-partys.jpg", "BUXAR-Nights.jpg", "BUXAR-MUN.jpg", "DELHI-Hackthone.jpg", "BUXAR-To-KOTA.jpg", "BUXAR-Village-Holi.jpg", "BUXAR-Kamkhya.jpg", "BUXAR-UP-Mangla-Bhawani.jpg", "Buxar jail road2.jpg", "Buxar Jail road.jpg"],
+        match: /(buxar|ganga|kabakhya|kamkhya|mangla|jail|village|holi)/i,
         keepMissing: false
       }
     ];
 
+    const MEDIA_EXTENSIONS = /\.(jpe?g|png|gif|webp|avif|svg|bmp|mp4|webm|mov|m4v|ogg)$/i;
+    const VIDEO_EXTENSIONS = /\.(mp4|webm|mov|m4v|ogg)$/i;
     const folderGrid = document.getElementById("folderGrid");
     const lightbox = document.getElementById("lightbox");
-    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxMedia = document.getElementById("lightboxMedia");
     const lightboxTitle = document.getElementById("lightboxTitle");
     const realPhotos = [];
     let currentIndex = 0;
 
     function captionFromFile(fileName) {
-      return fileName.replace(/\.[^/.]+$/, "").replace(/[_.-]/g, " ").replace(/\s+/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase()).trim();
+      const base = fileName.split("/").pop() || fileName;
+      return base.replace(/\.[^/.]+$/, "").replace(/[_.-]/g, " ").replace(/\s+/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase()).trim();
     }
 
-    function createPhotoTile(fileName, folder) {
+    function rawUrl(path) {
+      return "https://raw.githubusercontent.com/Anish-Kushwaha/Photos/main/" +
+        path.split("/").map(encodeURIComponent).join("/");
+    }
+
+    function mediaType(fileName) {
+      return VIDEO_EXTENSIONS.test(fileName) ? "video" : "image";
+    }
+
+    function createMediaElement(fileName, url, forLightbox = false) {
+      if (mediaType(fileName) === "video") {
+        const video = document.createElement("video");
+        video.src = url;
+        video.controls = forLightbox;
+        video.playsInline = true;
+        video.preload = forLightbox ? "metadata" : "metadata";
+        video.muted = !forLightbox;
+        if (!forLightbox) video.setAttribute("aria-label", captionFromFile(fileName));
+        return video;
+      }
+
+      const image = document.createElement("img");
+      image.src = url;
+      image.alt = captionFromFile(fileName);
+      image.loading = forLightbox ? "eager" : "lazy";
+      return image;
+    }
+
+    function createPhotoTile(file, folder) {
+      const fileName = typeof file === "string" ? file : file.path;
+      const url = typeof file === "string" ? file : file.url;
       const tile = document.createElement("button");
       tile.className = "photo-tile";
       tile.type = "button";
       tile.style.setProperty("--folder-color", folder.color);
+      tile.setAttribute("aria-label", "Open " + captionFromFile(fileName));
 
-      const image = document.createElement("img");
-      image.src = fileName;
-      image.alt = captionFromFile(fileName);
-      image.loading = "lazy";
-
+      const media = createMediaElement(fileName, url);
       const label = document.createElement("span");
       label.className = "tile-label";
       label.textContent = captionFromFile(fileName);
 
-      image.addEventListener("load", () => {
-        const index = realPhotos.push({ fileName, title: `${folder.title} • ${captionFromFile(fileName)}` }) - 1;
-        tile.addEventListener("click", () => openLightbox(index));
-      }, { once: true });
+      if (mediaType(fileName) === "video") {
+        const badge = document.createElement("span");
+        badge.className = "media-badge";
+        badge.innerHTML = '<i class="fa-solid fa-play"></i> VIDEO';
+        tile.appendChild(badge);
+      }
 
-      image.addEventListener("error", () => {
-        tile.classList.add("placeholder");
-        tile.innerHTML = `<div><i class="fa-regular fa-image"></i><strong>${fileName}</strong><span>Reserved upcoming photo slot</span></div>`;
-        if (!folder.keepMissing) tile.classList.add("hidden-missing");
-      }, { once: true });
+      const item = { fileName, url, title: folder.title + " • " + captionFromFile(fileName), type: mediaType(fileName) };
+      const index = realPhotos.push(item) - 1;
+      tile.addEventListener("click", () => openLightbox(index));
 
-      tile.append(image, label);
+      tile.append(media, label);
       return tile;
     }
 
-    function renderFolders() {
-      folders.forEach((folder, folderIndex) => {
-        const article = document.createElement("article");
-        article.className = "photo-folder";
-        article.style.setProperty("--folder-color", folder.color);
-        article.style.animationDelay = `${folderIndex * -0.8}s`;
+    function createFolderArticle(folder, folderIndex, files) {
+      const article = document.createElement("article");
+      article.className = "photo-folder";
+      article.style.setProperty("--folder-color", folder.color);
+      article.style.animationDelay = `${folderIndex * -0.8}s`;
 
-        const tags = folder.tags.map((tag) => `<span class="tag">${tag}</span>`).join("");
-        article.innerHTML = `
-          <div class="folder-summary">
-            <div>
-              <p class="eyebrow">Folder ${folderIndex + 1}</p>
-              <h3>${folder.title}</h3>
-              <p>${folder.years}</p>
-              <p>${folder.description}</p>
-              <div class="folder-meta">${tags}</div>
-            </div>
-            <i class="folder-icon fa-solid fa-folder-open"></i>
+      const tags = folder.tags.map((tag) => `<span class="tag">${tag}</span>`).join("");
+      article.innerHTML = `
+        <div class="folder-summary">
+          <div>
+            <p class="eyebrow">Folder ${folderIndex + 1}</p>
+            <h3>${folder.title}</h3>
+            <p>${folder.years}</p>
+            <p>${folder.description}</p>
+            <div class="folder-meta">${tags}</div>
           </div>
-        `;
+          <i class="folder-icon fa-solid fa-folder-open"></i>
+        </div>
+      `;
 
-        const strip = document.createElement("div");
-        strip.className = "photo-strip";
-        folder.files.forEach((fileName) => strip.appendChild(createPhotoTile(fileName, folder)));
-        article.appendChild(strip);
-        folderGrid.appendChild(article);
-      });
+      const strip = document.createElement("div");
+      strip.className = "photo-strip";
+      files.forEach((file) => strip.appendChild(createPhotoTile(file, folder)));
+      article.appendChild(strip);
+      folderGrid.appendChild(article);
+    }
+
+    async function discoverRepositoryMedia() {
+      const api = "https://api.github.com/repos/Anish-Kushwaha/Photos/git/trees/main?recursive=1";
+      const response = await fetch(api, { headers: { Accept: "application/vnd.github+json" } });
+      if (!response.ok) throw new Error("GitHub repository scan failed: " + response.status);
+      const data = await response.json();
+
+      return (data.tree || [])
+        .filter((entry) => entry.type === "blob" && MEDIA_EXTENSIONS.test(entry.path))
+        .map((entry) => ({
+          path: entry.path,
+          url: rawUrl(entry.path)
+        }));
+    }
+
+    function showScanError(error) {
+      const notice = document.createElement("div");
+      notice.className = "photo-folder";
+      notice.style.padding = "24px";
+      notice.innerHTML = `
+        <div class="folder-summary">
+          <div>
+            <p class="eyebrow">Auto Discovery</p>
+            <h3>Repository scan unavailable</h3>
+            <p>GitHub could not be scanned right now. Refresh the page and the gallery will try again.</p>
+          </div>
+          <i class="folder-icon fa-solid fa-cloud-arrow-down"></i>
+        </div>
+      `;
+      folderGrid.appendChild(notice);
+      console.error(error);
+    }
+
+    async function renderFolders() {
+      folderGrid.innerHTML = "";
+      realPhotos.length = 0;
+
+      try {
+        const discovered = await discoverRepositoryMedia();
+        const assigned = new Set();
+
+        folders.forEach((folder, folderIndex) => {
+          const matches = discovered.filter((file) => !assigned.has(file.path) && folder.match.test(file.path));
+          matches.forEach((file) => assigned.add(file.path));
+          createFolderArticle(folder, folderIndex, matches);
+        });
+
+        const unassigned = discovered.filter((file) => !assigned.has(file.path));
+        if (unassigned.length) {
+          const autoFolder = {
+            title: "Auto-Discovered Media",
+            years: "Fetched automatically from this GitHub repository",
+            description: "Any supported image or video added to the repository appears here automatically. No filename needs to be added to the HTML.",
+            color: "#6be4ff",
+            tags: ["AUTO", "IMAGES", "VIDEOS", "LIVE REPO"]
+          };
+          createFolderArticle(autoFolder, folders.length, unassigned);
+        }
+
+        if (!discovered.length) {
+          const emptyFolder = {
+            title: "No Media Found",
+            years: "Repository scan complete",
+            description: "Add an image or video to this repository and refresh the page.",
+            color: "#6be4ff",
+            tags: ["AUTO", "READY"]
+          };
+          createFolderArticle(emptyFolder, 0, []);
+        }
+      } catch (error) {
+        showScanError(error);
+      }
     }
 
     function openLightbox(index) {
       currentIndex = index;
-      const photo = realPhotos[currentIndex];
-      if (!photo) return;
-      lightboxImage.src = photo.fileName;
-      lightboxImage.alt = photo.title;
-      lightboxTitle.textContent = photo.title;
+      const item = realPhotos[currentIndex];
+      if (!item) return;
+
+      lightboxMedia.innerHTML = "";
+      const media = createMediaElement(item.fileName, item.url, true);
+      lightboxMedia.appendChild(media);
+      lightboxTitle.textContent = item.title;
       lightbox.classList.add("open");
       lightbox.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
+      if (item.type === "video") media.play().catch(() => {});
     }
 
     function closeLightbox() {
+      const video = lightboxMedia.querySelector("video");
+      if (video) video.pause();
       lightbox.classList.remove("open");
       lightbox.setAttribute("aria-hidden", "true");
-      lightboxImage.src = "";
+      lightboxMedia.innerHTML = "";
       document.body.style.overflow = "";
     }
 
